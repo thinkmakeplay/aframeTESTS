@@ -1,0 +1,42 @@
+<!doctype html>
+<html>
+    <head>
+        <title>Playing pre-rendered videos in scene</title>
+        <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
+    </head>
+
+    <body>
+
+      <a-scene>
+        <!-- Using the asset management system. -->
+        <a-assets>
+          <video id="dog_slide" autoplay loop="true" src="https://cdn.glitch.com/b42d76f4-87e1-45de-b342-8e65a5bd800e%2FVID_20171018_slide.mp4?v=1610217919583"></video>
+        </a-assets>
+     
+        <a-link href="index.html" target="_blank" position="-3 5 -8" title="My Homepage" image="#homeThumbnail"></a-link>
+      
+        <!-- green ground -->
+        <a-plane position="0 0 -4" rotation="-90 0 0" width="4" height="4" color="#7BC8A4" shadow>
+        </a-plane>
+        
+        <!-- red box behind video screens -->
+        <a-box position="-15 5 -30" rotation="0 0 0" shadow color="#ff0000" scale="5 5 5">
+        </a-box> 
+        
+        <!-- basic video primitive plays video on flat plane (had to flip upside down) -->
+        <a-video src="#dog_slide" width="16" height="9" position="0 0 -20" rotation="0 0 180">
+        </a-video>
+
+        <!-- box with video set as material (plays on all faces)
+             also has video child so position in relation to box (rotated) and opacity changed-->
+        <a-box position="-1 0.5 -3" rotation="0 45 0" color="#ffffff" shadow src="https://cdn.glitch.com/b42d76f4-87e1-45de-b342-8e65a5bd800e%2FVID_20171018_slide.mp4?v=1610217919583">
+          <a-video src="#dog_slide" width="16" height="9" position="0 0 -20" rotation="0 0 180" opacity="0.5">
+          </a-video>
+        </a-box>
+        
+        <a-sphere position="3 3  -8" radius="2" color="#EF2D5E" shadow src="#dog_slide"></a-sphere>
+
+      </a-scene>
+  </body>
+</html>
+

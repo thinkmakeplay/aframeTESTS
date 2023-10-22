@@ -1,0 +1,77 @@
+<html>
+  
+  <head>
+    <meta charset="UTF-8">
+    <title>More audio effects</title>
+    <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
+    <script>
+      AFRAME.registerComponent('play',   //new component is called play
+      {
+        init: function()                 //here's what it does
+        {
+          var myTarget = document.querySelector('#hissy');  // look for correct entity using id
+          this.el.addEventListener('click',                 // listen for a click on me
+            function()                                      // if so, do this
+            {
+              myTarget.components.sound.playSound();        // play the sound on the entity with the id
+            });
+        }
+      });                                //don't forget to close all brackets correctly
+    </script>   
+  </head>
+  
+  <body>
+    <a-scene>
+      <a-assets>
+        <img id="ground" src="https://cdn.glitch.com/b42d76f4-87e1-45de-b342-8e65a5bd800e%2FWhite_grey_check.png?v=1607108996841">
+        <a-asset-item src="https://cdn.glitch.com/b42d76f4-87e1-45de-b342-8e65a5bd800e%2Fpenguin.obj?v=1607116996870" id="penguin"></a-asset-item>
+        <a-asset-item src="https://cdn.glitch.com/b42d76f4-87e1-45de-b342-8e65a5bd800e%2Fpenguin.mtl?v=1607117004669" id="penguinmat"></a-asset-item>
+        <audio src="https://cdn.glitch.com/b42d76f4-87e1-45de-b342-8e65a5bd800e%2FOK_Animal%20Hiss%20And%20Rattle.mp3?v=1607109798020" id="hiss"></audio>
+        <audio src="https://cdn.glitch.com/b42d76f4-87e1-45de-b342-8e65a5bd800e%2FOK_Monster%20Alien%20Growl%20Pained.mp3?v=1607109806059" id="growl"></audio>
+      </a-assets>     
+      
+      <a-plane src="#ground" rotation="-90 0 0" position="0 0 -4" scale="100 50 0" repeat="5 5">
+      </a-plane>
+      
+      <a-entity link="href: index.html; title: .; borderColor: #660; backgroundColor: #660" position=" 0 4 -10" scale="0.5 0.5 0.5"></a-entity>
+      
+      <a-box position="-6 0.5 0" color="#33ffff" id="stopbox" stop></a-box>
+      
+      <a-entity position="0 6 -8" text="font: roboto; align: center; width: 10.5; color: black; value: Click little green box."></a-entity>
+      <a-entity position="0 5 -8" text="font: roboto; align: center; width: 10.5; color: black; value: Then look behind you and click the mustard box..."></a-entity>
+      <a-cylinder position="4 0.5 -7" 
+                  color="#660000" 
+                  scale="0.5 4 0.5" 
+                  id="hissy"
+                  sound="src: #growl">         
+          <a-box position="0 0.75 0" scale="1 0.2 1 " color="#4CC366" play></a-box>
+      </a-cylinder>
+            
+      <a-cylinder position="40 0.5 -10" color="#666600" scale="1 5 1">
+          
+      </a-cylinder>
+           
+      <a-box position="-2 0.5 5" 
+             color="#ccf366" 
+             scale="2 2 2" 
+             id="hissbox"
+             sound="src: #hiss; on: click; volume: 1; refDistance: 4; rolloffFactor:4">
+        <a-entity sound="src: #hiss; autoplay: false"
+                  position="0 3 0"></a-entity>
+      </a-box>
+            
+      <a-obj-model src="#penguin" 
+                   mtl="#penguinmat" 
+                   position="0 -0.2 -8" 
+                   rotation="-90 -45 0" 
+                   scale="0.05, 0.05 0.05">
+      </a-obj-model>
+      <a-obj-model src="#penguin" mtl="#penguinmat" position="0 -0.2 8" rotation="-90 -45 0" scale="0.05, 0.05 0.05">
+      </a-obj-model>
+      
+      <a-camera>
+         <a-cursor material="color: cyan; shader: flat"></a-cursor>
+      </a-camera>
+    </a-scene>
+  </body>
+</html>

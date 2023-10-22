@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>WebVR with A-Frame</title>
+    <meta name="description" content="WebVR with A-Frame">
+    <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
+    <script>
+      AFRAME.registerComponent('play-on-window-click', {
+      init: function () {
+        this.onClick = this.onClick.bind(this);
+      },
+      play: function () {
+        window.addEventListener('click', this.onClick);
+      },
+      pause: function () {
+        window.removeEventListener('click', this.onClick);
+      },
+      onClick: function (evt) {
+        var video = this.el.components.material.material.map.image;
+        if (!video) { return; }
+        video.play();
+      }
+    });
+    </script>
+     
+  </head>
+  
+  <body>
+
+
+<a-scene>
+  <a-assets>
+     <video id="ridetrain" autoplay="false" loop="false" src="https://cdn.glitch.com/b42d76f4-87e1-45de-b342-8e65a5bd800e%2Fvr2Video_Dec2020.mp4?v=1607862114063"> </video>
+  </a-assets>
+
+  <a-videosphere rotation="0 0 0"
+                 src="#ridetrain" 
+                 play-on-window-click
+                 play-on-vrdisplayactivate-or-enter-vr>
+  </a-videosphere>
+  
+    <a-link href="demo_21.html" position="0 5 -8" title="go back" image="#homeThumbnail"></a-link>
+  
+   <!-- Define camera with zero user height, movement disabled and arrow key rotation added. -->
+      <a-camera user-height="0" wasd-controls-enabled="false" arrow-key-rotation>
+        <!-- Text element for display messaging. -->
+        <a-entity id="msg" position="0 -0.3 -1.5" 
+                  text="align:center; 
+                        width:3;
+                        wrapCount:100;
+                        color:red;
+                        value:Click window to make the video play, if needed.">
+                
+        </a-entity>
+        <a-cursor material="color: cyan; shader: flat"></a-cursor>
+      </a-camera>      
+
+  </a-scene>
+    
+  </body>
+</html>

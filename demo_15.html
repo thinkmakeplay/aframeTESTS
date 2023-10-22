@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>   
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>AR Test1</title>
+    <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
+ 
+    <!-- include ar.js for A-Frame -->
+    <script src="https://jeromeetienne.github.io/AR.js/aframe/build/aframe-ar.js"></script>
+</head>
+  
+<body style="margin : 0px; overflow: hidden;">
+  
+  <a-scene embedded arjs>
+    <a-assets>
+        <a-asset-item src="https://cdn.glitch.com/b42d76f4-87e1-45de-b342-8e65a5bd800e%2Fpenguin.obj?v=1607116996870" id="penguin"></a-asset-item>
+        <a-asset-item src="https://cdn.glitch.com/b42d76f4-87e1-45de-b342-8e65a5bd800e%2Fpenguin.mtl?v=1607117004669" id="penguinmat"></a-asset-item>
+    </a-assets>     
+
+    <!--define a camera which will move according to the marker position -->
+    <a-marker-camera preset="hiro">
+      <a-obj-model src="#penguin" mtl="#penguinmat" position="0 0.5 0" rotation="0 180 0" scale="0.03, 0.03, 0.03">
+      </a-obj-model>
+    </a-marker-camera>
+  </a-scene>
+  
+</body>
+</html>
+
+

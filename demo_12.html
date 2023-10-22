@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<head>
+  <meta charset="utf-8">
+  <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
+  <script src="aframe-stereo-component.js"></script>
+</head>
+
+<body>
+  <a-scene antialias="true">
+  <!-- Paths to left and right images -->
+    <a-assets>
+      <img id="left" src="https://cdn.glitch.com/b42d76f4-87e1-45de-b342-8e65a5bd800e%2Fleft1.png?v=1606041973489">
+      <img id="right" src="https://cdn.glitch.com/b42d76f4-87e1-45de-b342-8e65a5bd800e%2Fright1.png?v=1606041978151">
+    </a-assets>
+
+  <!-- Camera -->
+    <a-entity camera look-controls position="0 0 0" stereocam="eye:left;"></a-entity>
+
+  <!-- Sky sphere -->
+      <a-sky id="sky1" radius="5000" src="#left" stereo="eye:left"></a-sky>
+      <a-sky id="sky2" radius="5000" src="#right" stereo="eye:right"></a-sky>
+    </a-scene>
+</body>
+

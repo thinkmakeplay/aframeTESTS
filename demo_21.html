@@ -1,0 +1,31 @@
+<html>
+  <head>
+    <title>Testing 360 videos</title>
+    <link rel="stylesheet" href="/style.css">
+  </head>
+  
+  <body>
+    <h1>
+      Testing 360 videos
+    </h1>
+    <p>
+      <a href="index.html">Back to index</a>
+    </p>
+    <p>
+      Do you want to ... 
+      <ul>
+        <li><a href="demo_21_2.html">ride the train</a> with music?</li>
+        <li>or <a href="demo_21_1.html">watch trains</a> from the centre?</li>
+    </ul>
+      In either case, the 360 video has an unsightly seam in it - haven't resolved this, as it seems to be the Unity 360 camera causing the problem.  The equirects don't create a seamless texture ?? because the directional light isn't smooth...
+    </p>
+    
+    <p>
+      You can limit whether users can turn heads if you have this issue (look-controls), and just take them on a ride. You can make the panoramic video 180 instead of 360.
+    </p>
+  
+    <p>
+      Notice that the audio starts immediately (it's part of the video), and despite setting <i>autoplay="false"</i> it continues to play!  At least it doesn't loop all the time now.
+    </p>  
+  </body>
+</html>
