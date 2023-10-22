@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>WebVR with A-Frame</title>
+    <meta name="description" content="WebVR with A-Frame" />
+    <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
+  </head>
+
+  <body>
+    <a-assets>
+      <a-asset-item
+        src="https://cdn.glitch.global/b42d76f4-87e1-45de-b342-8e65a5bd800e/hedge01.obj?v=1665959310977"
+        id="hedge1"
+      ></a-asset-item>
+      <a-asset-item
+        src="https://cdn.glitch.global/b42d76f4-87e1-45de-b342-8e65a5bd800e/penguin.obj?v=1696845850263"
+        id="penguin"
+      ></a-asset-item>
+      <a-asset-item
+        src="https://cdn.glitch.com/e8d73ebb-21eb-40f3-b16b-d32cc69bda8d%2Fstar1mat.mtl?1536861461953"
+        id="star1mat"
+      ></a-asset-item>
+      <a-asset-item
+        src="https://cdn.glitch.global/b42d76f4-87e1-45de-b342-8e65a5bd800e/penguin.mtl?v=1696845876550"
+        id="penguinmat"
+      ></a-asset-item>
+     
+
+    </a-assets>
+
+    <a-scene background="color: #000099">
+      <a-link
+        href="index.html"
+        position="-3 5 -8"
+        title="My Homepage"
+        image="#homeThumbnail"
+      ></a-link>
+      <a-plane
+        position="0 0 -4"
+        rotation="-90 0 0"
+        width="4"
+        height="4"
+        color="#7BC8A4"
+        shadow
+      ></a-plane>
+      <a-obj-model
+        src="#hedge1"
+        color="#FF926B"
+        
+        position="-10 0 -50"
+        rotation="-90 0 0"
+        scale="0.5, 0.5, 0.5"
+      >
+      </a-obj-model>
+      <a-obj-model
+        src="#penguin"
+        mtl="#penguinmat"
+        color="#FF926B"
+        
+        position="0 0 -40"
+        rotation="-90 0 0"
+        scale="0.5, 0.5, 0.5"
+      >
+      </a-obj-model>
+
+
+
+
+      <a-camera>
+        <a-cursor material="color: cyan; shader: flat"></a-cursor>
+      </a-camera>
+    </a-scene>
+  </body>
+</html>
