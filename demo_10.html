@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>WebVR with A-Frame</title>
+    <meta name="description" content="WebVR with A-Frame">
+    <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
+  </head>
+  
+  <body>
+  <a-assets>
+      <a-asset-item src="https://cdn.glitch.com/b42d76f4-87e1-45de-b342-8e65a5bd800e%2Fbox_texture1.obj?v=1605304721461" id="box1"></a-asset-item>
+      <a-asset-item src="https://cdn.glitch.com/b42d76f4-87e1-45de-b342-8e65a5bd800e%2Fbox_texture.mtl?v=1605312624738" id="box1mat"></a-asset-item>
+    
+      <a-asset-item src="https://cdn.glitch.com/b42d76f4-87e1-45de-b342-8e65a5bd800e%2FPUMKIN.obj?v=1604864141411" id="pumpkin"></a-asset-item>
+      <a-asset-item src="https://cdn.glitch.com/b42d76f4-87e1-45de-b342-8e65a5bd800e%2FPUMKIN.mtl?v=1604864150646" id="pumpkinmat"></a-asset-item>
+  </a-assets>
+    
+  <a-scene background="color: #000000">
+    
+      <a-link href="index.html" position="-3 5 -8" title="My Homepage" image="#homeThumbnail"></a-link>
+      <a-plane position="0 0 -4" rotation="-90 0 0" width="4" height="4" color="#7BC8A4" shadow></a-plane>
+    
+    
+      <a-obj-model src="#box1" 
+                   color="#FF926B" 
+                   mtl="#box1mat" 
+                   position="-30 5 -97" 
+                   rotation="0 35 0" 
+                   scale="20 20 20">
+      </a-obj-model>
+       
+      <a-box src="https://cdn.glitch.com/b42d76f4-87e1-45de-b342-8e65a5bd800e%2FCube.png?v=1605300978680" 
+             position="-1 0.5 -3" 
+             rotation="0 45 0" shadow>
+      </a-box>
+    
+          <a-obj-model src="#pumpkin" color="#FF926B" mtl="#pumkinmat" position="0 -4 -25" rotation="0 25 0" scale="10 10 10">
+      </a-obj-model>
+      
+      <a-camera>
+         <a-cursor material="color: cyan; shader: flat"></a-cursor>
+      </a-camera>
+  </a-scene>
+    
+  </body>
+</html>

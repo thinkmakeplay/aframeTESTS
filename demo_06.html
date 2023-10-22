@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>WebVR with A-Frame</title>
+    <meta name="description" content="WebVR with A-Frame">
+    <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
+  </head>
+  
+  <body>
+  
+
+    
+    <a-scene background="color: #ECECEC">
+      
+      <a-assets>     
+        <img id="halloween" 
+           src="https://cdn.glitch.com/b42d76f4-87e1-45de-b342-8e65a5bd800e%2Fxbones.png?v=1604874195969"
+           crossorigin="anonymous">
+        <img id="hallo_wee" 
+           src="https://cdn.glitch.com/b42d76f4-87e1-45de-b342-8e65a5bd800e%2Fxbone_wee.png?v=1604876175223"
+           crossorigin="anonymous">
+      </a-assets>
+      
+      <a-entity link="href: index.html; image: #hallo_wee"></a-entity>
+      
+      <a-plane position="0 0 -4" rotation="-90 0 0" width="4" height="4" color="#7BC8A4" shadow></a-plane>
+      
+      <a-entity geometry="primitive: plane" 
+                position="1 3 -3" 
+                rotation="0 0 0" 
+                material="color: cyan; src: #halloween">
+      </a-entity>
+      
+      <!-- png shows transparency-->
+      <a-image src="#halloween" position="0 1 -3" ></a-image>
+      
+      <!-- button link with image -->
+      <a-link href="index.html" position="1 2 -13" image="#hallo_wee"></a-link>
+      
+      <a-camera look-controls position="0 1.6 0">
+         <a-cursor material="color: cyan; shader: flat"></a-cursor>
+      </a-camera>
+      
+    </a-scene>
+    
+  </body>
+</html>
+
+

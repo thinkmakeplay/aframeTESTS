@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>WebVR with A-Frame</title>
+    <meta name="description" content="WebVR with A-Frame">
+    <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.0.1/dist/aframe-extras.min.js"></script>
+
+  </head>
+  
+  <body>
+  
+    <a-scene background="color: #ECECEC">
+      <a-asset-item src="https://cdn.glitch.com/b42d76f4-87e1-45de-b342-8e65a5bd800e%2Fblob_walk.gltf?v=1605375206214" id="blobwalk">
+      </a-asset-item>
+      
+      <a-link href="index.html" position="-3 5 -8" title="My Homepage" image="#homeThumbnail"></a-link>
+           
+      <a-plane position="0 0 -4" rotation="-90 0 0" width="4" height="4" color="#7BC8A4" shadow></a-plane>
+      
+      <a-entity id="blob" 
+                gltf-model="#blobwalk" 
+                position="0 0 -4" 
+                rotation="0 0 0" 
+                scale="0.2 0.2 0.2"          
+                animation-mixer>
+        <!--<a-animation attribute="rotation" easing="linear"
+               dur="10000" to="0 360 0" repeat="indefinite"></a-animation> -->
+      </a-entity>
+            
+      <a-camera look-controls position="0 1.6 0">
+         <a-cursor material="color: cyan; shader: flat"></a-cursor>
+      </a-camera>
+      
+    </a-scene>
+    
+  </body>
+</html>

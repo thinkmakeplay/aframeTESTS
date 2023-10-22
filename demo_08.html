@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>360&deg; Image Gallery</title>
+    <meta name="description" content="360&deg; Image Gallery - A-Frame" />
+    <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
+  </head>
+
+  <body>
+    <a-scene>
+      <a-assets>
+        <img
+          id="city"
+          crossorigin="anonymous"
+          src="https://cdn.glitch.com/952ffaee-da13-4f12-a651-7874171a6ada%2Fvrtest2.png?v=1603579027674"
+        />
+      </a-assets>
+
+      <!-- 360-degree image. -->
+      <a-sky id="image-360" radius="50" src="#city"></a-sky>
+      <a-link
+        href="index.html"
+        position="-3 5 -8"
+        title="My Homepage"
+        image="#homeThumbnail"
+      ></a-link>
+
+      <a-box
+        position="-1 0.5 -5"
+        rotation="0 45 0"
+        color="#4CC366"
+        shadow
+      ></a-box>
+
+      <!-- Camera + cursor. -->
+
+      <a-entity
+        id="rig"
+        position="0 0 0"
+        rotation="0 0 0"
+        animation="property: rotation; to: 0 360 0; loop: true; dur: 20000; easing: linear"
+      >
+        <a-entity id="camera" camera look-controls position="0 1.6 0">
+          <a-cursor id="cursor" material="color: yellow; shader: flat">
+          </a-cursor>
+        </a-entity>
+      </a-entity>
+    </a-scene>
+  </body>
+</html>
