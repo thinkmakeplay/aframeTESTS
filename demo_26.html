@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Alternative links and calling Javascript functions</title>
+    <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script> 
+    <script> 
+      AFRAME.registerComponent('displaydate', {
+        init: function(){
+          var d = new Date()
+          this.el.setAttribute('value', d)
+        }
+      });
+      AFRAME.registerComponent('navigate-on-click', {
+        schema: { url: {default: ''}},
+        init: function () {
+          var data = this.data;
+          var el = this.el;
+          el.addEventListener('click', function () {
+            window.location.href = data.url;
+          });
+        }
+      });   
+    </script>
+  </head>
+  <body>
+    <a-scene>
+      <a-assets>     
+        <img id="halloween" 
+           src="https://cdn.glitch.com/b42d76f4-87e1-45de-b342-8e65a5bd800e%2Fxbones.png?v=1604874195969"
+           crossorigin="anonymous">
+      </a-assets>
+      
+      <a-text position="0 4 -4" color="blue" align="center" displaydate></a-text>
+      
+      <a-text position="-2 1 -4" color="black" align="left" value="back to index"></a-text>
+      <a-box navigate-on-click="url: index.html" position="-1 1 -5" color="red"></a-box>
+      <a-text position="0.8 1 -4" color="black" align="left" value="first demo"></a-text>
+      <a-box navigate-on-click="url: demo_01.html" position="1 1 -5" color="pink"></a-box>
+      
+      <a-text position="-2 2 -4" color="black" align="left" value="playing video"></a-text>
+      <a-box navigate-on-click="url: demo_24.html" position="-1 2.1 -5" color="pink"></a-box>
+      <a-text position="0.8 2 -4" color="black" align="left" value="particle systems"></a-text>
+      <a-box navigate-on-click="url: demo_25.html" position="1 2.1 -5" color="red"></a-box>
+      
+      <a-entity position="0 4 -3" navigate-on-click="url: index.html">
+        <a-image src="#halloween" position="0 0 0"></a-image>
+      
+      </a-entity>
+      
+      <a-camera position="0 1.2 0">
+         <a-cursor material="color: black; shader: flat"></a-cursor>
+      </a-camera>
+      
+    </a-scene>
+    
+  </body>
+</html>

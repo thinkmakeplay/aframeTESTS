@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Ifs and Buts</title>
+    <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script> 
+    <script>
+      $ = (sel) => document.querySelector(sel);
+      var myscore = 0;
+      var redhit = 0;
+      
+      AFRAME.registerComponent('ifclick', {
+        init: function () {   
+          var myrand = Math.floor(Math.random() * Math.floor(10)) + 9 ;
+          var el = this.el;
+          el.addEventListener('click', function () {
+            if(el.id === 'redbox' && redhit === 0)
+            {
+              myscore += 1;
+              redhit = 1;
+            }
+            else if(el.id === 'pinkbox')
+            {
+              myscore += 2;
+            }
+            else if(el.id === 'brownbox')
+            {              
+              console.log(myrand); 
+              window.location.href = "demo_"+myrand+".html";
+            }
+            
+            $("#score").setAttribute('text','value','Score '+ myscore);
+            $("#scorekeeper").setAttribute('scale', { x: myscore/10, y: 0.1, z: 0.1 });
+            
+          });    
+        }
+      });  
+    </script>
+  </head>
+  <body>
+    <a-scene>
+      
+      <a-box ifclick id="redbox" position="-1 1 -5" color="red"></a-box>
+      <a-box ifclick id="pinkbox" position="1 1 -5" color="pink"></a-box>   
+      <a-box ifclick id="brownbox" position="-1 2.1 -5" color="brown"></a-box>
+      <a-box id="orangebox" position="1 2.1 -5" color="orange"></a-box>
+      
+      <a-entity id="scoreshape" position="0 8 -10">
+        <a-box id="scorekeeper" color="black" scale="0.1 0.1 0.1"></a-box>
+      </a-entity>
+      
+      <a-text id="info" scale="0.2 0.2 0.2" wrapcount="20" 
+              value="Click boxes, red allows one only, pink allows many clicks, brown sends to random demo url. Health-bar changes size. Variables kept outside component." 
+              align="left" position="-0.5 0.7 -1" color="black" ></a-text> 
+      
+      <a-camera position="0 1.2 0">
+        <a-text id="score" value="SCORE" align="center" position="0 1.5 -3" color="black" ></a-text> 
+        <a-cursor material="color: black; shader: flat"></a-cursor>
+      </a-camera>
+      
+    </a-scene>
+  </body>
+</html>

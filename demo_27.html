@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Catching hedgehogs</title>
+    <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script> 
+    <script src="//cdn.rawgit.com/donmccurdy/aframe-physics-system/v4.0.1/dist/aframe-physics-system.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.0/dist/aframe-extras.min.js"></script>
+    <script>
+      $ = (sel) => document.querySelector(sel)
+      $$ = (sel) => document.querySelectorAll(sel)
+      on = (elem, type, hand) => elem.addEventListener(type,hand)
+    </script>
+    <script> 
+      AFRAME.registerComponent('score-on-click', {
+        init: function () {
+          var el = this.el;
+          var myscore = 0;
+          el.addEventListener('click', function () {
+            myscore += 1;
+            $("#score").setAttribute('text','value','Score '+ myscore);
+            
+          });
+        }
+      });  
+    </script>
+  </head>
+  
+  <body>
+    <a-scene background="color: #331122" physics="gravity: -9.8; restitution: 0.7; debug: true">
+      <a-assets>
+        <a-asset-item src="https://cdn.glitch.com/b42d76f4-87e1-45de-b342-8e65a5bd800e%2Fhedgehog.obj?v=1610316876784" id="hedgehog"></a-asset-item>
+        <a-asset-item src="https://cdn.glitch.com/b42d76f4-87e1-45de-b342-8e65a5bd800e%2Fhedgehog.mtl?v=1610316895240" id="hogmat"></a-asset-item>
+      </a-assets>
+      
+      <a-link href="index.html" position="0 12 -20" title="My Homepage" image="#homeThumbnail"></a-link> 
+      <a-plane position="0 0 -4" rotation="-90 0 0" width="20" height="20" color="#33ff66" shadow></a-plane>
+
+      <a-entity position="0 0 -3" id="hog1"
+                animation="property: rotation; easing: linear; loop: true; to: 0 360 0; dur: 30000; pauseEvents: click"
+                static-body
+                score-on-click>
+      <a-obj-model src="#hedgehog" mtl="#hogmat" position="2 0 0" rotation="270 -60 0" scale="0.01 0.01 0.01">
+      </a-obj-model>
+      </a-entity>
+      
+      <a-entity position="2 0 -2" id="hog2"
+                animation="property: rotation; easing: linear; loop: true; to: 0 360 0; dur: 12000; pauseEvents: click"
+                static-body
+                score-on-click>
+      <a-obj-model src="#hedgehog" mtl="#hogmat" position="1.5 0 0" rotation="270 -60 0" scale="0.01 0.01 0.01">
+      </a-obj-model>
+      </a-entity>
+      
+      <a-entity position="1 0 -1" id="hog3"
+                animation="property: rotation; easing: linear; loop: true; to: 0 -360 0; dur: 24000; pauseEvents: click"
+                static-body
+                score-on-click>
+      <a-obj-model src="#hedgehog" mtl="#hogmat" position="1 0 0" rotation="270 -60 180" scale="0.01 0.01 0.01">
+      </a-obj-model>
+      </a-entity>
+      
+      
+      
+      <a-camera id="mycam" position="0 0.5 0">
+        <a-text value="Catch the hedgehogs" align="center" position="0 2 -3" color="cyan" ></a-text> 
+        <a-text id="score" value="SCORE: " align="center" position="0 1.5 -3" color="red" ></a-text> 
+        <a-cursor material="color: cyan; shader: flat"></a-cursor>
+      </a-camera>
+    </a-scene>    
+  </body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>WebVR with A-Frame</title>
+    <meta name="description" content="WebVR with A-Frame">
+    <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+    
+  </head>
+  
+  <body>
+  <a-assets>
+      <a-asset-item src="https://cdn.glitch.com/b42d76f4-87e1-45de-b342-8e65a5bd800e%2FAnyConv.com__virus3.obj?v=1616406493753" id="virus"></a-asset-item>
+      <a-asset-item src="https://cdn.glitch.com/b42d76f4-87e1-45de-b342-8e65a5bd800e%2FAnyConv.com__virus2.obj?v=1616407038578" id="virus2"></a-asset-item>
+    
+      <a-asset-item src="https://cdn.glitch.com/b42d76f4-87e1-45de-b342-8e65a5bd800e%2FPUMKIN.mtl?v=1604864150646" id="pumpkinmat"></a-asset-item>
+  </a-assets>
+    
+  <a-scene background="color: #000000">
+    
+
+      <a-plane position="0 0 -4" rotation="-90 0 0" width="4" height="4" color="#7BC8A4" shadow></a-plane>
+      <a-obj-model src="#star1" color="#FF926B" mtl="#star1mat" position="-30 -22 -97" rotation="0 35 0" scale="0.5, 0.5, 0.5">
+      </a-obj-model>
+    
+      <a-obj-model src="#virus" color="#FF926B" material="opacity: 0.5; transparent: true"
+                   position="0 2 -6" scale="0.01 0.01 0.01"
+                   animation="property: rotation; easing: linear; loop: true; to: 0 360 360; dur: 20000; pauseEvents: click">
+        
+      </a-obj-model>
+    <a-obj-model src="#virus2" color="#FF006B" position="-2 2 -4" rotation="0 0 0" scale="0.005 0.005 0.005"
+                   animation="property: rotation; easing: linear; loop: true; to: -3600 360 0; dur: 40000; pauseEvents: click">
+        
+      </a-obj-model>
+      
+      <a-camera>
+         <a-cursor material="color: cyan; shader: flat"></a-cursor>
+      </a-camera>
+  </a-scene>
+    
+  </body>
+</html>
+

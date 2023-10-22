@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Ifs and Buts</title>
+    <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script> 
+    <script>
+      $ = (sel) => document.querySelector(sel);
+      //var myscore = 0;
+      let redhit = 0;
+      let brownhit = 0;
+      let orangehit = 0;
+      let pinkhit = 0;
+      let code = [];
+      let realcode = [1,2,3,4];
+      console.log(code);
+      
+      let myrand1 = Math.floor(Math.random() * 3 + 1);
+      
+      console.log(myrand1);
+      
+      
+      AFRAME.registerComponent('ifclick', {
+        init: function () {   
+
+          var el = this.el;
+          el.addEventListener('click', function () {
+            if(el.id === 'redbox' && redhit === 0)
+            {
+              code.push(1);
+              redhit = 1;
+              $("#redbox").setAttribute('rotation', {x:0, y:45, z:0});
+              $("#redbox").setAttribute('color', "gray");
+            }
+            else if(el.id === 'pinkbox' && pinkhit === 0) 
+            {
+              code.push(2);
+              pinkhit = 1;
+              $("#pinkbox").setAttribute('rotation', {x:0, y:45, z:0});
+              $("#pinkbox").setAttribute('color', "gray");
+            }
+            else if(el.id === 'brownbox' && brownhit === 0)
+            {   
+              code.push(3);
+              brownhit = 1;
+              $("#brownbox").setAttribute('rotation', {x:0, y:45, z:0});
+              $("#brownbox").setAttribute('color', "gray");
+            }
+            else if(el.id === 'orangebox' && orangehit === 0)
+            {
+              code.push(4);  
+              orangehit = 1;
+              $("#orangebox").setAttribute('rotation', {x:0, y:45, z:0});
+              $("#orangebox").setAttribute('color', "gray");
+            }
+                        
+            if(code.length === realcode.length)
+            {
+              if (code[0]===realcode[0] && code[1]===realcode[1] && code[2]===realcode[2] && code[3]===realcode[3])
+                {
+                  console.log("You win!");
+                  $("#redbox").setAttribute('position', {x:-2, y:1, z:-5});
+                  $("#pinkbox").setAttribute('position', {x:2, y:1, z:-5});
+                  $("#brownbox").setAttribute('position', {x:-2, y:2.1, z:-5});
+                  $("#orangebox").setAttribute('position', {x:2, y:2.1, z:-5});
+                }
+              else
+                {
+                  console.log("Loser - try again");
+                  code.length = 0;
+                  redhit = 0;
+                  $("#redbox").setAttribute('rotation', {x:0, y:0, z:0});
+                  $("#redbox").setAttribute('color', "red");
+                  pinkhit = 0;
+                  $("#pinkbox").setAttribute('rotation', {x:0, y:0, z:0});
+                  $("#pinkbox").setAttribute('color', "pink");
+                  brownhit = 0;
+                  $("#brownbox").setAttribute('rotation', {x:0, y:0, z:0});
+                  $("#brownbox").setAttribute('color', "brown");
+                  orangehit = 0;
+                  $("#orangebox").setAttribute('rotation', {x:0, y:0, z:0});
+                  $("#orangebox").setAttribute('color', "orange");
+                }
+         
+            }
+        
+            console.log(code);
+        
+            
+          });    
+        }
+      });  
+    </script>
+  </head>
+  <body>
+    <a-scene>
+      
+      <a-assets>  
+      <!-- panoramic image with id-->
+        <img id="city" 
+             crossorigin="anonymous" 
+             src="https://cdn.glitch.com/952ffaee-da13-4f12-a651-7874171a6ada%2Fvrtest2.png?v=1603579027674"/>
+      </a-assets>
+      <!-- display 360-degree image with src="#id" -->
+      <a-sky id="image-360" radius="50" src="#city" rotation="0 90 0"></a-sky>
+      
+      <!-- Display 4 buttons for door -->
+      <a-box ifclick id="redbox" position="-1 1 -5" color="red" rotation="1 1 1"></a-box>
+      <a-box ifclick id="pinkbox" position="1 1 -5" color="pink"></a-box>   
+      <a-box ifclick id="brownbox" position="-1 2.1 -5" color="brown"></a-box>
+      <a-box ifclick id="orangebox" position="1 2.1 -5" color="orange"></a-box>
+      
+            
+      <a-text id="info" scale="0.2 0.2 0.2" wrapcount="20" 
+              value="Select the buttons in correct order to exit." 
+              align="left" position="-0.5 0.7 -1" color="black" ></a-text> 
+      
+      <a-camera position="0 1.2 0">
+        
+        <a-cursor material="color: black; shader: flat"></a-cursor>
+      </a-camera>
+      
+    </a-scene>
+  </body>
+</html>
